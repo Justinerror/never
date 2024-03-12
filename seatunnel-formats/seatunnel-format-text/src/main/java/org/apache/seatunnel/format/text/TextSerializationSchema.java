@@ -41,13 +41,13 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class TextSerializationSchema implements SerializationSchema {
-    private final SeaTunnelRowType seaTunnelRowType;
-    private final String[] separators;
-    private final DateUtils.Formatter dateFormatter;
-    private final DateTimeUtils.Formatter dateTimeFormatter;
-    private final TimeUtils.Formatter timeFormatter;
+    public final SeaTunnelRowType seaTunnelRowType;
+    public final String[] separators;
+    public final DateUtils.Formatter dateFormatter;
+    public final DateTimeUtils.Formatter dateTimeFormatter;
+    public final TimeUtils.Formatter timeFormatter;
 
-    private TextSerializationSchema(
+    public TextSerializationSchema(
             @NonNull SeaTunnelRowType seaTunnelRowType,
             String[] separators,
             DateUtils.Formatter dateFormatter,
@@ -124,7 +124,7 @@ public class TextSerializationSchema implements SerializationSchema {
         return String.join(separators[0], strings).getBytes();
     }
 
-    private String convert(Object field, SeaTunnelDataType<?> fieldType, int level) {
+    public String convert(Object field, SeaTunnelDataType<?> fieldType, int level) {
         if (field == null) {
             return "";
         }
