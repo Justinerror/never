@@ -27,6 +27,9 @@ import org.apache.seatunnel.transform.exception.ErrorDataTransformException;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Collections;
+import java.util.List;
+
 @Slf4j
 public abstract class AbstractCatalogSupportTransform implements SeaTunnelTransform<SeaTunnelRow> {
     protected final ErrorHandleWay rowErrorHandleWay;
@@ -83,6 +86,11 @@ public abstract class AbstractCatalogSupportTransform implements SeaTunnelTransf
         }
 
         return outputCatalogTable;
+    }
+
+    @Override
+    public List<CatalogTable> getProducedCatalogTables() {
+        return Collections.singletonList(getProducedCatalogTable());
     }
 
     private CatalogTable transformCatalogTable() {
