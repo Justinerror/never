@@ -38,7 +38,7 @@ public abstract class AbstractCatalogSupportTransform implements SeaTunnelTransf
     protected volatile CatalogTable outputCatalogTable;
 
     public AbstractCatalogSupportTransform(@NonNull CatalogTable inputCatalogTable) {
-        this(inputCatalogTable, CommonOptions.ROW_ERROR_HANDLE_WAY_OPTION.defaultValue());
+        this(inputCatalogTable, TransformCommonOptions.ROW_ERROR_HANDLE_WAY_OPTION.defaultValue());
     }
 
     public AbstractCatalogSupportTransform(
