@@ -47,7 +47,7 @@ public class TransformCommonOptions {
                     .defaultValue(".*")
                     .withDescription("The regex to match the table path");
 
-    public static Option<ErrorHandleWay> ROW_ERROR_HANDLE_WAY_OPTION =
+    public static final Option<ErrorHandleWay> ROW_ERROR_HANDLE_WAY_OPTION =
             Options.key("row_error_handle_way")
                     .singleChoice(
                             ErrorHandleWay.class,
@@ -57,7 +57,7 @@ public class TransformCommonOptions {
                             "The processing method of data format error. The default value is fail, and the optional value is (fail, skip). "
                                     + "When fail is selected, data format error will block and an exception will be thrown. "
                                     + "When skip is selected, data format error will skip this line data.");
-    public static Option<ErrorHandleWay> COLUMN_ERROR_HANDLE_WAY_OPTION =
+    public static final Option<ErrorHandleWay> COLUMN_ERROR_HANDLE_WAY_OPTION =
             Options.key("column_error_handle_way")
                     .enumType(ErrorHandleWay.class)
                     .noDefaultValue()
