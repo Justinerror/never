@@ -57,6 +57,7 @@ import org.apache.seatunnel.engine.server.resourcemanager.ResourceManagerFactory
 import org.apache.seatunnel.engine.server.resourcemanager.resource.SlotProfile;
 import org.apache.seatunnel.engine.server.service.jar.ConnectorPackageService;
 import org.apache.seatunnel.engine.server.task.operation.GetMetricsOperation;
+import org.apache.seatunnel.engine.server.telemetry.log.TaskLogManagerService;
 import org.apache.seatunnel.engine.server.telemetry.metrics.entity.JobCounter;
 import org.apache.seatunnel.engine.server.telemetry.metrics.entity.ThreadPoolStatus;
 import org.apache.seatunnel.engine.server.utils.NodeEngineUtil;
@@ -164,6 +165,8 @@ public class CoordinatorService {
     private final SeaTunnelServer seaTunnelServer;
 
     private final ScheduledExecutorService masterActiveListener;
+
+    private TaskLogManagerService taskLogManagerService;
 
     private final EngineConfig engineConfig;
 
@@ -274,6 +277,16 @@ public class CoordinatorService {
                 engineConfig.getConnectorJarStorageConfig();
         if (connectorJarStorageConfig.getEnable()) {
             connectorPackageService = new ConnectorPackageService(seaTunnelServer);
+        }
+        // task log manager service
+        if (engineConfig.getTelemetryConfig() != null
+                && engineConfig.getTelemetryConfig().getLogs() != null
+                && engineConfig.getTelemetryConfig().getLogs().isEnabled()) {
+            taskLogManagerService =
+                    new TaskLogManagerService(
+                            engineConfig.getTelemetryConfig().getLogs(), jobHistoryService);
+            logger.info("Telemetry logs is enabled, start task log manager service.");
+            taskLogManagerService.initClean();
         }
 
         restoreAllJobFromMasterNodeSwitchFuture =
