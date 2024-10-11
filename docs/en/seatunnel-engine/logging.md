@@ -82,9 +82,9 @@ SeaTunnel Engine automatically integrates Log framework bridge, allowing existin
 
 ### SeaTunnel Log Configuration
 
-### Scheduled Deletion of Old Logs
+### Scheduled deletion of old logs
 
-SeaTunnel supports scheduled deletion of old log files to prevent disk space exhaustion. You can add the following configuration in the `log4j2.properties` file:
+SeaTunnel supports scheduled deletion of old log files to prevent disk space exhaustion. You can add the following configuration in the `seatunnel.yml` file:
 
 ```yaml
     telemetry:

@@ -84,7 +84,7 @@ SeaTunnel Engine 自动集成了大多数 Log 桥接器，允许针对 Log4j1/Lo
 
 ### 定时删除旧日志
 
-SeaTunnel 支持定时删除旧日志文件，以避免磁盘空间不足。您可以在 `log4j2.properties` 文件中添加以下配置：
+SeaTunnel 支持定时删除旧日志文件，以避免磁盘空间不足。您可以在 `seatunnel.yml` 文件中添加以下配置：
 
 ```yaml
     telemetry:
