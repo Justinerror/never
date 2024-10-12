@@ -96,7 +96,8 @@ public class JdbcDmIT extends AbstractJdbcIT {
                     + "    DM_VARBINARY        VARBINARY,\n"
                     + "    DM_LONGVARBINARY    LONGVARBINARY,\n"
                     + "    DM_IMAGE            IMAGE,\n"
-                    + "    DM_BFILE            BFILE\n"
+                    + "    DM_BFILE            BFILE,\n"
+                    + "    constraint PK_T_COL primary key (\"DM_INT\")"
                     + ")";
 
     @Override
@@ -125,6 +126,7 @@ public class JdbcDmIT extends AbstractJdbcIT {
                 .sinkTable(DM_SINK)
                 .createSql(CREATE_SQL)
                 .configFile(CONFIG_FILE)
+                .useSaveModeCreateTable(true)
                 .insertSql(insertSql)
                 .testData(testDataSet)
                 .tablePathFullName(String.format("%s.%s", DM_DATABASE, DM_SOURCE))
